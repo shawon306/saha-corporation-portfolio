@@ -1,0 +1,1211 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saha Corporation | Custom Web Engineering & Graphic Design — Hridoy Saha Shawon</title>
+  <meta name="description" content="Saha Corporation by Hridoy Saha Shawon. 100% Hand-Coded Full-Stack Web Development (HTML5, CSS3, JavaScript, Next.js, Node.js, Databases, APIs) & High-Impact Graphic Design. Crisp White, Royal Blue & Crimson Red Executive Standard." />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              white: '#FFFFFF',
+              surface: '#F8FAFC',
+              navy: '#0F172A',
+              slate: '#334155',
+              blue: '#1D4ED8',
+              blueLight: '#2563EB',
+              blueSoft: '#EFF6FF',
+              red: '#DC2626',
+              redLight: '#EF4444',
+              redSoft: '#FEF2F2',
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-7px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FFFFFF;
+      color: #0F172A;
+      overflow-x: hidden;
+    }
+
+    /* Crisp architectural subtle grid on pure white */
+    .bg-blueprint {
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, rgba(29, 78, 216, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(29, 78, 216, 0.045) 1px, transparent 1px);
+    }
+
+    /* Sticky white glassmorphism header */
+    .glass-header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    /* Crisp white surface cards with Royal Blue & Red accents */
+    .exec-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.05);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .exec-card:hover {
+      transform: translateY(-4px);
+      border-color: #2563EB;
+      box-shadow: 0 20px 35px -10px rgba(29, 78, 216, 0.14);
+    }
+
+    /* Royal Blue & Crimson Red Executive Gradient Text */
+    .text-blue-red-gradient {
+      background: linear-gradient(125deg, #1D4ED8 0%, #2563EB 52%, #DC2626 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Primary Royal Blue CTA */
+    .btn-royal {
+      background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .btn-royal:hover {
+      background: linear-gradient(135deg, #1E40AF 0%, #1D4ED8 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -6px rgba(29, 78, 216, 0.38);
+    }
+
+    /* Secondary Crimson Red CTA */
+    .btn-crimson {
+      background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .btn-crimson:hover {
+      background: linear-gradient(135deg, #B91C1C 0%, #DC2626 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -6px rgba(220, 38, 38, 0.38);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-blueprint antialiased selection:bg-[#1D4ED8] selection:text-white">
+
+  <!-- Toast Notification (No alert() used) -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden transform transition-all duration-300 translate-y-4 opacity-0">
+    <div class="flex items-center gap-3 rounded-xl bg-[#0F172A] border-l-4 border-[#DC2626] px-4 py-3 text-sm font-medium text-white shadow-2xl">
+      <svg class="w-5 h-5 text-[#EF4444] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+      </svg>
+      <span id="toast-message">Copied to clipboard!</span>
+    </div>
+  </div>
+
+  <!-- Top Executive Bar (White / Blue / Red) -->
+  <div class="bg-[#0F172A] text-white text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-[#EF4444] animate-ping"></span>
+        <span class="font-mono tracking-wide text-slate-200">100% HAND-CODED ARCHITECTURE • ZERO CMS TEMPLATES</span>
+      </div>
+      <div class="flex items-center gap-4 font-mono">
+        <a href="mailto:shawongaming306@gmail.com" class="text-slate-300 hover:text-white transition-colors">shawongaming306@gmail.com</a>
+        <span class="text-slate-600">|</span>
+        <a href="https://wa.me/8801706631550" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 font-semibold transition-colors">WhatsApp: +880 1706631550</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky White Glassmorphism Navigation -->
+  <header class="glass-header sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- Custom White, Royal Blue & Crimson Red Geometric SVG Logo -->
+        <a href="#" class="flex items-center gap-3.5 group">
+          <div class="w-12 h-12 rounded-2xl bg-white border-2 border-[#1D4ED8] shadow-md shadow-blue-900/10 flex items-center justify-center relative overflow-hidden group-hover:border-[#DC2626] transition-colors">
+            <svg class="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Outer Geometric Shield / Hexagon in Royal Blue -->
+              <path d="M24 4L41 13.8V34.2L24 44L7 34.2V13.8L24 4Z" stroke="#1D4ED8" stroke-width="3.2" stroke-linejoin="round" fill="#EFF6FF"/>
+              <!-- Precision Architectural 'S' Ribbon in Royal Blue & Crimson Red -->
+              <path d="M30 16.5C30 14.3 27.6 13 24 13C20.1 13 18 14.7 18 17.2C18 20.1 21 21.3 24.6 22.6C28.3 23.9 30.8 25.4 30.8 28.8C30.8 32.1 27.8 34.2 23.7 34.2C19.8 34.2 17.4 32.5 17.1 29.8" stroke="#1D4ED8" stroke-width="3.6" stroke-linecap="round"/>
+              <!-- Crimson Red Power Accent Nodes & Slash -->
+              <circle cx="24" cy="4" r="3" fill="#DC2626"/>
+              <circle cx="24" cy="44" r="3" fill="#DC2626"/>
+              <path d="M33 13L38 16" stroke="#DC2626" stroke-width="2.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <span class="font-display font-extrabold text-xl tracking-tight text-[#0F172A] block leading-none">
+              SAHA <span class="text-[#1D4ED8]">CORPORATION</span><span class="text-[#DC2626]">.</span>
+            </span>
+            <span class="text-[11px] font-mono font-semibold text-slate-500 tracking-wider uppercase mt-1 block">
+              Web Engineering & Brand Studio
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-[#334155]">
+          <a href="#services" class="hover:text-[#1D4ED8] transition-colors">Services</a>
+          <a href="#tech-stack" class="hover:text-[#1D4ED8] transition-colors">Tech Stack</a>
+          <a href="#why-custom" class="hover:text-[#1D4ED8] transition-colors">Why Custom Code</a>
+          <a href="#portfolio" class="hover:text-[#1D4ED8] transition-colors">Live Portfolio</a>
+          <a href="#about" class="hover:text-[#1D4ED8] transition-colors">About Founder</a>
+        </nav>
+
+        <!-- Desktop Hire Us CTA -->
+        <div class="hidden sm:flex items-center gap-3">
+          <a href="#hire-us" class="btn-crimson px-5 py-2.5 rounded-xl text-sm font-bold text-white shadow-md flex items-center gap-2">
+            <span>Hire Us</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" aria-label="Toggle Navigation" class="lg:hidden p-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0F172A] hover:border-[#1D4ED8]">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-2.5 shadow-xl">
+      <a href="#services" class="block py-2 px-3 rounded-lg text-[#0F172A] hover:bg-[#EFF6FF] hover:text-[#1D4ED8] font-semibold">Services</a>
+      <a href="#tech-stack" class="block py-2 px-3 rounded-lg text-[#0F172A] hover:bg-[#EFF6FF] hover:text-[#1D4ED8] font-semibold">Tech Stack</a>
+      <a href="#why-custom" class="block py-2 px-3 rounded-lg text-[#0F172A] hover:bg-[#EFF6FF] hover:text-[#1D4ED8] font-semibold">Why Custom Code</a>
+      <a href="#portfolio" class="block py-2 px-3 rounded-lg text-[#0F172A] hover:bg-[#EFF6FF] hover:text-[#1D4ED8] font-semibold">Live Portfolio</a>
+      <a href="#about" class="block py-2 px-3 rounded-lg text-[#0F172A] hover:bg-[#EFF6FF] hover:text-[#1D4ED8] font-semibold">About Founder</a>
+      <a href="#hire-us" class="block w-full text-center btn-crimson py-3 rounded-xl font-bold text-white mt-3">
+        Hire Us — Start a Project
+      </a>
+    </div>
+  </header>
+
+  <!-- High-Impact Crisp White, Royal Blue & Crimson Red Hero Section -->
+  <section class="relative pt-14 pb-20 lg:pt-20 lg:pb-28 overflow-hidden bg-white">
+    <!-- Crisp Geometric Royal Blue & Crimson Red Decorative Shapes -->
+    <div class="absolute top-0 right-0 w-[520px] h-[520px] bg-[#EFF6FF] rounded-full blur-3xl -translate-y-1/3 translate-x-1/4 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-[420px] h-[420px] bg-[#FEF2F2] rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Left Executive Pitch -->
+        <div class="lg:col-span-7 text-center lg:text-left">
+          <!-- Live Status Badge -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#EFF6FF] border border-[#1D4ED8]/25 text-[#1D4ED8] text-xs font-mono font-bold mb-6 shadow-sm">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#DC2626] animate-pulse"></span>
+            <span>OPEN FOR INTERNATIONAL ENTERPRISE & CUSTOM PROJECTS</span>
+          </div>
+
+          <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-[56px] text-[#0F172A] leading-[1.1] tracking-tight mb-6">
+            Precision <span class="text-[#1D4ED8]">Custom Code</span> & <span class="text-[#DC2626]">Executive Design</span> for Global Brands.
+          </h1>
+
+          <p class="text-[#334155] text-base sm:text-lg leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+            Led by <strong class="text-[#0F172A]">Hridoy Saha Shawon</strong>, <strong class="text-[#1D4ED8]">Saha Corporation</strong> engineers bespoke, ultra-fast full-stack web applications (<span class="font-mono text-xs sm:text-sm bg-[#F8FAFC] border border-slate-200 px-2 py-0.5 rounded text-[#0F172A]">HTML5 • CSS3 • JS • Next.js • Node.js • Databases • APIs</span>) and high-impact brand visuals—with <span class="text-[#DC2626] font-semibold">zero cheap CMS templates</span>.
+          </p>
+
+          <!-- Dual Executive CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+            <a href="#portfolio" class="w-full sm:w-auto btn-royal px-8 py-4 rounded-2xl font-bold text-white text-base shadow-lg flex items-center justify-center gap-2.5">
+              <span>Explore Live Projects</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+            <a href="#hire-us" class="w-full sm:w-auto btn-crimson px-8 py-4 rounded-2xl font-bold text-white text-base shadow-lg flex items-center justify-center gap-2.5">
+              <span>Start a Project</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+          </div>
+
+          <!-- Trust Badges Row -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-xs font-semibold text-slate-600">
+            <span class="flex items-center gap-1.5">
+              <span class="w-4 h-4 rounded-full bg-[#EFF6FF] text-[#1D4ED8] flex items-center justify-center font-bold">✓</span>
+              100% Hand-Written Source Code
+            </span>
+            <span class="flex items-center gap-1.5">
+              <span class="w-4 h-4 rounded-full bg-[#FEF2F2] text-[#DC2626] flex items-center justify-center font-bold">✓</span>
+              Custom REST API & Database Design
+            </span>
+            <span class="flex items-center gap-1.5">
+              <span class="w-4 h-4 rounded-full bg-[#EFF6FF] text-[#1D4ED8] flex items-center justify-center font-bold">✓</span>
+              Direct Founder Accountability
+            </span>
+          </div>
+        </div>
+
+        <!-- Right Executive Agency Card & Custom SVG Brand Emblem -->
+        <div class="lg:col-span-5 animate-float">
+          <div class="rounded-3xl bg-white border-2 border-[#1D4ED8] shadow-2xl shadow-blue-950/10 overflow-hidden">
+            <!-- Top Royal Blue & Crimson Red Header Strip -->
+            <div class="bg-gradient-to-r from-[#1D4ED8] via-[#1E40AF] to-[#DC2626] px-6 py-4 flex items-center justify-between text-white">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-white"></span>
+                <span class="w-3 h-3 rounded-full bg-blue-200"></span>
+                <span class="w-3 h-3 rounded-full bg-red-200"></span>
+              </div>
+              <span class="font-mono text-xs font-bold tracking-wider uppercase">SAHA CORP • ARCHITECTURE SPEC</span>
+            </div>
+
+            <div class="p-6 sm:p-8 bg-white">
+              <!-- Custom Brand Banner Emblem -->
+              <div class="flex items-center gap-4 pb-6 mb-6 border-b border-slate-200">
+                <div class="w-16 h-16 rounded-2xl bg-[#EFF6FF] border-2 border-[#1D4ED8] flex items-center justify-center shrink-0 relative">
+                  <svg class="w-10 h-10" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L41 13.8V34.2L24 44L7 34.2V13.8L24 4Z" stroke="#1D4ED8" stroke-width="3" fill="#FFFFFF"/>
+                    <path d="M30 16.5C30 14.3 27.6 13 24 13C20.1 13 18 14.7 18 17.2C18 20.1 21 21.3 24.6 22.6C28.3 23.9 30.8 25.4 30.8 28.8C30.8 32.1 27.8 34.2 23.7 34.2C19.8 34.2 17.4 32.5 17.1 29.8" stroke="#1D4ED8" stroke-width="3.6" stroke-linecap="round"/>
+                    <circle cx="24" cy="4" r="3.5" fill="#DC2626"/>
+                    <circle cx="24" cy="44" r="3.5" fill="#DC2626"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-display font-extrabold text-xl text-[#0F172A]">Saha Corporation</div>
+                  <div class="text-xs font-mono font-semibold text-[#1D4ED8]">Hridoy Saha Shawon • Founder & CEO</div>
+                  <span class="inline-block mt-1.5 px-2.5 py-0.5 rounded bg-[#FEF2F2] text-[#DC2626] border border-[#DC2626]/20 font-mono text-[11px] font-bold">
+                    GLOBAL CLIENT READY
+                  </span>
+                </div>
+              </div>
+
+              <!-- Crisp Stack Specifications -->
+              <div class="space-y-3 font-mono text-xs">
+                <div class="flex items-center justify-between p-3 rounded-xl bg-[#F8FAFC] border border-slate-200">
+                  <span class="text-slate-500 font-semibold">Frontend Core</span>
+                  <span class="text-[#1D4ED8] font-bold">HTML5 • CSS3 • JS • Next.js</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-[#F8FAFC] border border-slate-200">
+                  <span class="text-slate-500 font-semibold">Backend & API</span>
+                  <span class="text-[#0F172A] font-bold">Node.js • Express • REST API</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-[#F8FAFC] border border-slate-200">
+                  <span class="text-slate-500 font-semibold">Data Layer</span>
+                  <span class="text-[#1D4ED8] font-bold">PostgreSQL • Supabase • MongoDB</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-[#FEF2F2]/60 border border-[#DC2626]/20">
+                  <span class="text-slate-600 font-semibold">Brand Studio</span>
+                  <span class="text-[#DC2626] font-bold">Logo • UI/UX • Graphic Design</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Executive Metrics Strip -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-16">
+        <div class="exec-card rounded-2xl p-6 text-center border-t-4 border-t-[#1D4ED8]">
+          <div class="font-display font-extrabold text-3xl text-[#1D4ED8] mb-1">100%</div>
+          <div class="text-xs sm:text-sm font-semibold text-[#0F172A]">Hand-Coded Architecture</div>
+        </div>
+        <div class="exec-card rounded-2xl p-6 text-center border-t-4 border-t-[#DC2626]">
+          <div class="font-display font-extrabold text-3xl text-[#DC2626] mb-1">0%</div>
+          <div class="text-xs sm:text-sm font-semibold text-[#0F172A]">Bloated CMS Templates</div>
+        </div>
+        <div class="exec-card rounded-2xl p-6 text-center border-t-4 border-t-[#1D4ED8]">
+          <div class="font-display font-extrabold text-3xl text-[#1D4ED8] mb-1">99+</div>
+          <div class="text-xs sm:text-sm font-semibold text-[#0F172A]">Lighthouse Speed Score</div>
+        </div>
+        <div class="exec-card rounded-2xl p-6 text-center border-t-4 border-t-[#DC2626]">
+          <div class="font-display font-extrabold text-3xl text-[#DC2626] mb-1">24/7</div>
+          <div class="text-xs sm:text-sm font-semibold text-[#0F172A]">Direct Executive Support</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Services & Technical Stack Section -->
+  <section id="services" class="py-20 bg-[#F8FAFC] border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+        <span class="inline-block px-3 py-1 rounded-full bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-bold uppercase tracking-wider mb-3">
+          Core Capabilities
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0F172A] mb-4">
+          Full-Stack Web Engineering & Graphic Design
+        </h2>
+        <p class="text-[#334155] text-base">
+          We unite clean, enterprise-grade software engineering with bold visual identity design so your business commands immediate authority in global markets.
+        </p>
+      </div>
+
+      <!-- 6 Service & Tech Cards -->
+      <div id="tech-stack" class="grid md:grid-cols-2 lg:grid-cols-3 gap-7 reveal">
+
+        <!-- 1. HTML5, CSS3 & Modern JavaScript -->
+        <div class="exec-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-[#EFF6FF] border border-[#1D4ED8]/20 text-[#1D4ED8] flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-[#0F172A] mb-2">HTML5, CSS3 & Modern JS</h3>
+            <p class="text-sm text-[#334155] leading-relaxed mb-5">
+              Semantic, accessible, ultra-lightweight web interfaces crafted with precision CSS architecture, Tailwind CSS, and clean ES6+ JavaScript—delivering instant page loads on every screen size.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100">
+            <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">HTML5</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">CSS3 / Tailwind</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">JavaScript ES6+</span>
+          </div>
+        </div>
+
+        <!-- 2. Next.js & React Applications -->
+        <div class="exec-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-[#FEF2F2] border border-[#DC2626]/20 text-[#DC2626] flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-[#0F172A] mb-2">Next.js & React Web Apps</h3>
+            <p class="text-sm text-[#334155] leading-relaxed mb-5">
+              Production-grade Server-Side Rendering (SSR), Static Site Generation (SSG), dynamic routing, and SEO-optimized single-page applications built for international SaaS and high-traffic platforms.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100">
+            <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">Next.js</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">React</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">SSR & SEO</span>
+          </div>
+        </div>
+
+        <!-- 3. Node.js & Express Backend -->
+        <div class="exec-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-[#EFF6FF] border border-[#1D4ED8]/20 text-[#1D4ED8] flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-[#0F172A] mb-2">Node.js & Express Backend</h3>
+            <p class="text-sm text-[#334155] leading-relaxed mb-5">
+              High-concurrency backend servers, secure role-based authentication (JWT/OAuth), automated background workers, and custom business logic engineered for reliability.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100">
+            <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">Node.js</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">Express.js</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">JWT Auth</span>
+          </div>
+        </div>
+
+        <!-- 4. Relational & NoSQL Databases -->
+        <div class="exec-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-[#FEF2F2] border border-[#DC2626]/20 text-[#DC2626] flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-[#0F172A] mb-2">Database Architecture</h3>
+            <p class="text-sm text-[#334155] leading-relaxed mb-5">
+              Normalized relational schemas and real-time NoSQL cloud databases designed for complex queries, instant filtering, row-level security, and effortless scaling.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100">
+            <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">PostgreSQL</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">Supabase</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">Firebase</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">MongoDB</span>
+          </div>
+        </div>
+
+        <!-- 5. Custom REST API Integrations -->
+        <div class="exec-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-[#EFF6FF] border border-[#1D4ED8]/20 text-[#1D4ED8] flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-[#0F172A] mb-2">REST API & Integrations</h3>
+            <p class="text-sm text-[#334155] leading-relaxed mb-5">
+              Custom JSON RESTful APIs, webhook pipelines, international payment gateways, AI model APIs, and third-party CRM or SaaS data synchronization.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100">
+            <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">RESTful APIs</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">Webhooks</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">AI APIs</span>
+          </div>
+        </div>
+
+        <!-- 6. Brand & UI Graphic Design -->
+        <div class="exec-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-[#FEF2F2] border border-[#DC2626]/20 text-[#DC2626] flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl text-[#0F172A] mb-2">Brand & UI Graphic Design</h3>
+            <p class="text-sm text-[#334155] leading-relaxed mb-5">
+              Executive corporate logos, high-converting hero banners, modern UI/UX design systems, social media kits, and AI-enhanced visual assets crafted for maximum brand recall.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100">
+            <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">Brand Logos</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">UI/UX Systems</span>
+            <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">Commercial Graphics</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- AI-Enhanced Workflow Transparency Banner -->
+      <div class="mt-12 rounded-3xl bg-white border-2 border-[#1D4ED8]/20 p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-sm reveal">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-[#1D4ED8] text-white flex items-center justify-center shrink-0 font-display font-extrabold text-lg">
+            AI+
+          </div>
+          <div>
+            <h4 class="font-display font-bold text-lg text-[#0F172A]">AI-Accelerated Precision, 100% Human-Engineered Quality</h4>
+            <p class="text-sm text-[#334155] mt-1 leading-relaxed">
+              We leverage modern AI tools to accelerate research, asset ideation, and rapid prototyping—while <strong class="text-[#0F172A]">Hridoy Saha Shawon</strong> personally architects, writes, audits, and optimizes every line of code and graphic pixel to guarantee enterprise reliability and complete customer satisfaction.
+            </p>
+          </div>
+        </div>
+        <span class="px-4 py-2 rounded-xl bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-bold shrink-0 border border-[#DC2626]/20">
+          ZERO COMPROMISE GUARANTEE
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why 100% Custom Code Beats Cheap CMS Templates -->
+  <section id="why-custom" class="py-20 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+        <span class="inline-block px-3 py-1 rounded-full bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-bold uppercase tracking-wider mb-3">
+          Executive Investment Value
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0F172A] mb-4">
+          Why 100% Custom Code Beats Cheap CMS Templates
+        </h2>
+        <p class="text-[#334155] text-base">
+          International enterprises invest in custom-coded software because it becomes a high-value proprietary asset—never a slow, vulnerable template rented from a page builder.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 reveal">
+        <!-- Cheap CMS Side (Crimson Red Warning) -->
+        <div class="rounded-3xl p-8 bg-[#FEF2F2]/40 border-2 border-[#DC2626]/25">
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-[#DC2626]/15">
+            <span class="px-3 py-1 rounded-lg bg-[#DC2626] text-white font-mono text-xs font-bold">CHEAP CMS / PAGE BUILDERS</span>
+            <span class="text-[#DC2626] font-bold text-sm">High Hidden Cost</span>
+          </div>
+          <ul class="space-y-4 text-sm text-[#334155]">
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#DC2626]/15 text-[#DC2626] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">✕</span>
+              <span><strong>Bloated Load Times:</strong> Heavy third-party themes slow down international visitors and hurt Google search rankings.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#DC2626]/15 text-[#DC2626] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">✕</span>
+              <span><strong>Security Vulnerabilities:</strong> Outdated plugins expose customer data and business operations to automated attacks.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#DC2626]/15 text-[#DC2626] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">✕</span>
+              <span><strong>Rigid Architecture:</strong> Impossible to build custom REST APIs, complex relational databases, or unique user workflows.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#DC2626]/15 text-[#DC2626] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">✕</span>
+              <span><strong>Generic Brand Image:</strong> Looks identical to thousands of low-budget sites, lowering client trust.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Saha Corporation Custom Code Side (Royal Blue Excellence) -->
+        <div class="rounded-3xl p-8 bg-[#EFF6FF]/50 border-2 border-[#1D4ED8] shadow-xl shadow-blue-900/5">
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-[#1D4ED8]/20">
+            <span class="px-3 py-1 rounded-lg bg-[#1D4ED8] text-white font-mono text-xs font-bold">SAHA CORPORATION CUSTOM CODE</span>
+            <span class="text-[#1D4ED8] font-bold text-sm">Enterprise Asset</span>
+          </div>
+          <ul class="space-y-4 text-sm text-[#0F172A]">
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#1D4ED8] text-white flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">✓</span>
+              <span><strong>Sub-Second Performance:</strong> Clean HTML5, CSS3, JS, and Next.js deliver instant responsiveness worldwide.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#1D4ED8] text-white flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">✓</span>
+              <span><strong>Hardened Security & Clean APIs:</strong> Custom Node.js backends, parameterized database queries, and zero plugin bloat.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#1D4ED8] text-white flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">✓</span>
+              <span><strong>100% Intellectual Property Ownership:</strong> Clean GitHub codebase that scales seamlessly from MVP to enterprise traffic.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#1D4ED8] text-white flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">✓</span>
+              <span><strong>Bespoke Brand & UI Design:</strong> Tailored visual systems crafted specifically to convert high-ticket global clients.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Portfolio Showcase with Interactive Category Filtering -->
+  <section id="portfolio" class="py-20 bg-[#F8FAFC] border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6 reveal">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-bold uppercase tracking-wider mb-3">
+            Live Production Portfolio
+          </span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0F172A]">
+            Deployed Custom Web Systems
+          </h2>
+        </div>
+
+        <!-- Interactive Category Filter Buttons -->
+        <div class="flex flex-wrap gap-2" id="portfolio-filters">
+          <button type="button" data-filter="all" class="filter-btn active-filter px-4 py-2 rounded-xl text-xs font-bold bg-[#1D4ED8] text-white shadow-sm transition-all">
+            All Projects (4)
+          </button>
+          <button type="button" data-filter="fullstack" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-[#334155] hover:border-[#1D4ED8] transition-all">
+            Full-Stack & Database
+          </button>
+          <button type="button" data-filter="ecommerce" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-[#334155] hover:border-[#1D4ED8] transition-all">
+            Brand & E-Commerce
+          </button>
+          <button type="button" data-filter="edtech" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-[#334155] hover:border-[#1D4ED8] transition-all">
+            EdTech & Portals
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Live Project Cards -->
+      <div class="grid md:grid-cols-2 gap-8 reveal" id="portfolio-grid">
+
+        <!-- Project 1: Saha News -->
+        <article data-category="fullstack" class="portfolio-item exec-card rounded-3xl overflow-hidden flex flex-col justify-between group">
+          <div>
+            <div class="h-48 bg-gradient-to-r from-[#1D4ED8] to-[#0F172A] p-6 flex flex-col justify-between relative overflow-hidden">
+              <div class="absolute right-0 top-0 w-36 h-36 bg-[#DC2626]/25 rounded-full blur-2xl"></div>
+              <div class="flex items-center justify-between relative z-10">
+                <span class="px-3 py-1 rounded-lg bg-white/15 backdrop-blur-sm text-white font-mono text-xs font-bold">
+                  NEWS & MEDIA ENGINE
+                </span>
+                <span class="text-xs font-mono text-blue-200">saha-news.vercel.app</span>
+              </div>
+              <div class="relative z-10">
+                <h3 class="font-display font-extrabold text-2xl text-white">Saha News</h3>
+                <p class="text-xs text-blue-100 mt-1">Bilingual Digital Journalism & Dynamic Publishing Portal</p>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <p class="text-sm text-[#334155] leading-relaxed mb-5">
+                Engineered from scratch for rapid editorial publishing, multi-category news feeds, bilingual content presentation, and fast mobile reading speeds without heavy CMS overhead.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">Next.js</span>
+                <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">Dynamic Routing</span>
+                <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">Cloud Database</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-100 text-[#0F172A] font-mono text-xs font-semibold">Editorial UI</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <a href="https://saha-news.vercel.app/" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-5 rounded-xl btn-royal text-white font-bold text-sm flex items-center justify-center gap-2">
+              <span>Launch Live Website</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: Saha Sweet -->
+        <article data-category="ecommerce" class="portfolio-item exec-card rounded-3xl overflow-hidden flex flex-col justify-between group">
+          <div>
+            <div class="h-48 bg-gradient-to-r from-[#DC2626] via-[#B91C1C] to-[#0F172A] p-6 flex flex-col justify-between relative overflow-hidden">
+              <div class="absolute right-0 top-0 w-36 h-36 bg-[#1D4ED8]/30 rounded-full blur-2xl"></div>
+              <div class="flex items-center justify-between relative z-10">
+                <span class="px-3 py-1 rounded-lg bg-white/15 backdrop-blur-sm text-white font-mono text-xs font-bold">
+                  COMMERCIAL BRAND & STORE
+                </span>
+                <span class="text-xs font-mono text-red-100">saha-sweet.netlify.app</span>
+              </div>
+              <div class="relative z-10">
+                <h3 class="font-display font-extrabold text-2xl text-white">Saha Sweet</h3>
+                <p class="text-xs text-red-100 mt-1">Modern Brand Identity & Interactive Product Showcase</p>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <p class="text-sm text-[#334155] leading-relaxed mb-5">
+                A bespoke commercial storefront pairing custom graphic design and brand presentation with a responsive product catalog built to maximize customer engagement and inquiries.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">Brand Design</span>
+                <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">HTML5 / CSS3</span>
+                <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">JavaScript</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-100 text-[#0F172A] font-mono text-xs font-semibold">Conversion UI</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <a href="https://saha-sweet.netlify.app/" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-5 rounded-xl btn-crimson text-white font-bold text-sm flex items-center justify-center gap-2">
+              <span>Launch Live Website</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3: Shawon Admission -->
+        <article data-category="fullstack edtech" class="portfolio-item exec-card rounded-3xl overflow-hidden flex flex-col justify-between group">
+          <div>
+            <div class="h-48 bg-gradient-to-r from-[#0F172A] via-[#1E3A8A] to-[#1D4ED8] p-6 flex flex-col justify-between relative overflow-hidden">
+              <div class="absolute right-0 top-0 w-36 h-36 bg-[#DC2626]/25 rounded-full blur-2xl"></div>
+              <div class="flex items-center justify-between relative z-10">
+                <span class="px-3 py-1 rounded-lg bg-white/15 backdrop-blur-sm text-white font-mono text-xs font-bold">
+                  FULL-STACK DATABASE APP
+                </span>
+                <span class="text-xs font-mono text-blue-200">shawonadmission.vercel.app</span>
+              </div>
+              <div class="relative z-10">
+                <h3 class="font-display font-extrabold text-2xl text-white">Shawon Admission</h3>
+                <p class="text-xs text-blue-100 mt-1">Real-Time University Admission Portal & Schedule Hub</p>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <p class="text-sm text-[#334155] leading-relaxed mb-5">
+                A full-stack academic platform featuring real-time database updates, user authentication, structured admission circulars, and instant deadline tracking for thousands of students.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">Next.js / JS</span>
+                <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">Database & Auth</span>
+                <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">REST API</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-100 text-[#0F172A] font-mono text-xs font-semibold">Live Filtering</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <a href="https://shawonadmission.vercel.app/" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-5 rounded-xl btn-royal text-white font-bold text-sm flex items-center justify-center gap-2">
+              <span>Launch Live Website</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 4: Hridoy Shawon Courses -->
+        <article data-category="edtech" class="portfolio-item exec-card rounded-3xl overflow-hidden flex flex-col justify-between group">
+          <div>
+            <div class="h-48 bg-gradient-to-r from-[#1D4ED8] via-[#1E40AF] to-[#DC2626] p-6 flex flex-col justify-between relative overflow-hidden">
+              <div class="flex items-center justify-between relative z-10">
+                <span class="px-3 py-1 rounded-lg bg-white/15 backdrop-blur-sm text-white font-mono text-xs font-bold">
+                  EDTECH DIRECTORY ENGINE
+                </span>
+                <span class="text-xs font-mono text-white/90">GitHub Pages Live</span>
+              </div>
+              <div class="relative z-10">
+                <h3 class="font-display font-extrabold text-2xl text-white">Hridoy Shawon Courses</h3>
+                <p class="text-xs text-white/90 mt-1">Dynamic URL-State Academic Program & Course Explorer</p>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <p class="text-sm text-[#334155] leading-relaxed mb-5">
+                Built with pure custom JavaScript and URL query parameter state (<code class="text-[#DC2626] font-mono text-xs">classId</code> & <code class="text-[#1D4ED8] font-mono text-xs">programType</code>) for instant, shareable curriculum filtering with zero page reloads.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">Vanilla JS State</span>
+                <span class="px-2.5 py-1 rounded-md bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-semibold">URL Query Engine</span>
+                <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-semibold">HTML5 / CSS3</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-100 text-[#0F172A] font-mono text-xs font-semibold">EdTech UX</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <a href="https://shawon306.github.io/hridoy-shawon-courses/?classId=0&programType=0" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-5 rounded-xl btn-crimson text-white font-bold text-sm flex items-center justify-center gap-2">
+              <span>Launch Live Website</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About Founder Section -->
+  <section id="about" class="py-20 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center reveal">
+
+        <!-- Left Founder Executive Card -->
+        <div class="lg:col-span-5">
+          <div class="rounded-3xl bg-[#F8FAFC] border-2 border-[#1D4ED8]/20 p-8 shadow-lg relative overflow-hidden">
+            <div class="w-full h-2 bg-gradient-to-r from-[#1D4ED8] to-[#DC2626] absolute top-0 left-0"></div>
+
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-16 h-16 rounded-2xl bg-[#1D4ED8] text-white flex items-center justify-center font-display font-extrabold text-2xl shadow-md shrink-0">
+                HS
+              </div>
+              <div>
+                <h3 class="font-display font-extrabold text-xl text-[#0F172A]">Hridoy Saha Shawon</h3>
+                <p class="text-sm font-bold text-[#1D4ED8]">Founder & Lead Software Architect</p>
+                <p class="text-xs font-mono text-[#DC2626] font-semibold mt-0.5">Saha Corporation • Bangladesh</p>
+              </div>
+            </div>
+
+            <p class="text-sm text-[#334155] leading-relaxed mb-6">
+              Combining rigorous analytical problem-solving with modern visual design craft, I founded <strong class="text-[#0F172A]">Saha Corporation</strong> to give global businesses a dependable engineering partner who writes clean, scalable code from scratch.
+            </p>
+
+            <div class="space-y-3 text-sm">
+              <div class="p-3.5 rounded-xl bg-white border border-slate-200 flex items-start gap-3">
+                <span class="w-6 h-6 rounded-lg bg-[#EFF6FF] text-[#1D4ED8] flex items-center justify-center font-bold shrink-0">∑</span>
+                <div>
+                  <strong class="text-[#0F172A] block text-xs uppercase font-mono">Analytical Problem-Solving</strong>
+                  <span class="text-xs text-[#334155]">Grounded in competitive mathematics (Bangladesh Math Olympiad background) for structured, bug-free algorithm and database design.</span>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-white border border-slate-200 flex items-start gap-3">
+                <span class="w-6 h-6 rounded-lg bg-[#FEF2F2] text-[#DC2626] flex items-center justify-center font-bold shrink-0">★</span>
+                <div>
+                  <strong class="text-[#0F172A] block text-xs uppercase font-mono">Relentless Work Ethic</strong>
+                  <span class="text-xs text-[#334155]">Every project receives personal founder attention—from database schema modeling to final pixel polish and deployment.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Founder Narrative -->
+        <div class="lg:col-span-7">
+          <span class="inline-block px-3 py-1 rounded-full bg-[#FEF2F2] text-[#DC2626] font-mono text-xs font-bold uppercase tracking-wider mb-3">
+            About The Founder
+          </span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0F172A] mb-5 leading-tight">
+            Built on Hard Work, Clean Code, and Total Client Satisfaction.
+          </h2>
+          <p class="text-[#334155] text-base leading-relaxed mb-5">
+            Many agencies cut corners by installing cheap pre-made CMS themes and charging enterprise rates. At <strong class="text-[#1D4ED8]">Saha Corporation</strong>, we take the opposite approach: we work hard on real engineering—writing semantic HTML5, modern CSS3, JavaScript, Next.js frontends, Node.js servers, secure databases, and custom APIs alongside bespoke graphic design.
+          </p>
+          <p class="text-[#334155] text-base leading-relaxed mb-8">
+            Whether you need a high-converting corporate platform, a custom full-stack SaaS application, or a complete visual brand identity, you work directly with <strong class="text-[#0F172A]">Hridoy Saha Shawon</strong> to ensure fast delivery, transparent communication, and measurable business growth.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="p-5 rounded-2xl bg-[#EFF6FF]/60 border border-[#1D4ED8]/20">
+              <div class="font-display font-bold text-base text-[#1D4ED8] mb-1">Full-Stack Execution</div>
+              <p class="text-xs text-[#334155] leading-relaxed">Frontend, backend, APIs, database hosting, and GitHub CI/CD handled under one roof.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-[#FEF2F2]/60 border border-[#DC2626]/20">
+              <div class="font-display font-bold text-base text-[#DC2626] mb-1">International Standards</div>
+              <p class="text-xs text-[#334155] leading-relaxed">Clear English communication, milestone tracking, and reliable delivery across US, UK, EU, and global timezones.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Zero-Backend International Client Quote Builder & Direct Contact -->
+  <section id="hire-us" class="py-20 bg-[#F8FAFC] border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+        <span class="inline-block px-3 py-1 rounded-full bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-bold uppercase tracking-wider mb-3">
+          Start Your Project
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-[#0F172A] mb-4">
+          International Client Inquiry & Quote Builder
+        </h2>
+        <p class="text-[#334155] text-base">
+          Select your project scope and budget tier below to launch a formatted direct message via <strong class="text-[#1D4ED8]">WhatsApp</strong> or <strong class="text-[#DC2626]">Official Email</strong>.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-8 items-start reveal">
+
+        <!-- Left: Zero-Backend Interactive Quote Builder -->
+        <div class="lg:col-span-7 bg-white rounded-3xl border-2 border-[#1D4ED8]/20 p-6 sm:p-8 shadow-xl shadow-blue-950/5">
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
+            <div>
+              <h3 class="font-display font-extrabold text-xl text-[#0F172A]">Instant Project Brief Generator</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Configure your requirements and connect immediately with Hridoy Saha Shawon.</p>
+            </div>
+            <span class="px-2.5 py-1 rounded-md bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-bold">FAST RESPONSE</span>
+          </div>
+
+          <!-- Step 1: Service Type -->
+          <div class="mb-6">
+            <label class="block text-xs font-mono font-bold uppercase tracking-wider text-[#0F172A] mb-2.5">
+              1. Select Primary Service
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="service-options">
+              <button type="button" data-value="Full-Stack Web App (Next.js + Node.js + DB)" class="brief-option px-3 py-3 rounded-xl text-xs font-bold border-2 border-[#1D4ED8] bg-[#EFF6FF] text-[#1D4ED8] text-center transition-all">
+                Full-Stack Web App
+              </button>
+              <button type="button" data-value="Custom Coded Website (HTML5, CSS3, JS, Next.js)" class="brief-option px-3 py-3 rounded-xl text-xs font-bold border border-slate-200 bg-[#F8FAFC] text-[#334155] hover:border-[#1D4ED8] text-center transition-all">
+                Custom Website
+              </button>
+              <button type="button" data-value="REST API & Database Architecture" class="brief-option px-3 py-3 rounded-xl text-xs font-bold border border-slate-200 bg-[#F8FAFC] text-[#334155] hover:border-[#1D4ED8] text-center transition-all">
+                API & Database
+              </button>
+              <button type="button" data-value="Graphic Design, Logo & Brand Identity" class="brief-option px-3 py-3 rounded-xl text-xs font-bold border border-slate-200 bg-[#F8FAFC] text-[#334155] hover:border-[#1D4ED8] text-center transition-all">
+                Graphic Design
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: USD Budget Tier -->
+          <div class="mb-6">
+            <label class="block text-xs font-mono font-bold uppercase tracking-wider text-[#0F172A] mb-2.5">
+              2. Estimated USD Investment Tier
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="budget-options">
+              <button type="button" data-value="$500 – $1,500 (Starter Custom Build)" class="budget-option px-3 py-3 rounded-xl text-xs font-bold border border-slate-200 bg-[#F8FAFC] text-[#334155] hover:border-[#DC2626] text-center transition-all">
+                $500 – $1,500
+              </button>
+              <button type="button" data-value="$1,500 – $5,000 (Growth Web System)" class="budget-option px-3 py-3 rounded-xl text-xs font-bold border-2 border-[#DC2626] bg-[#FEF2F2] text-[#DC2626] text-center transition-all">
+                $1,500 – $5,000
+              </button>
+              <button type="button" data-value="$5,000 – $15,000 (Full-Stack Platform)" class="budget-option px-3 py-3 rounded-xl text-xs font-bold border border-slate-200 bg-[#F8FAFC] text-[#334155] hover:border-[#DC2626] text-center transition-all">
+                $5,000 – $15,000
+              </button>
+              <button type="button" data-value="$15,000+ (Enterprise Ecosystem)" class="budget-option px-3 py-3 rounded-xl text-xs font-bold border border-slate-200 bg-[#F8FAFC] text-[#334155] hover:border-[#DC2626] text-center transition-all">
+                $15,000+
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Client Details -->
+          <div class="grid sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label for="client-name" class="block text-xs font-mono font-bold uppercase tracking-wider text-[#0F172A] mb-1.5">Your Name / Company</label>
+              <input id="client-name" type="text" placeholder="e.g. David Miller / Apex Ventures" class="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-sm text-[#0F172A] placeholder-slate-400 focus:outline-none focus:border-[#1D4ED8] focus:bg-white" />
+            </div>
+            <div>
+              <label for="client-timeline" class="block text-xs font-mono font-bold uppercase tracking-wider text-[#0F172A] mb-1.5">Target Timeline</label>
+              <input id="client-timeline" type="text" placeholder="e.g. 2–4 Weeks / Immediate Start" class="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-sm text-[#0F172A] placeholder-slate-400 focus:outline-none focus:border-[#1D4ED8] focus:bg-white" />
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label for="client-details" class="block text-xs font-mono font-bold uppercase tracking-wider text-[#0F172A] mb-1.5">Project Requirements & Goals</label>
+            <textarea id="client-details" rows="3" placeholder="Tell us about your custom website, Next.js/Node.js web app, database/API needs, or brand graphic design..." class="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-sm text-[#0F172A] placeholder-slate-400 focus:outline-none focus:border-[#1D4ED8] focus:bg-white"></textarea>
+          </div>
+
+          <!-- Instant Launch Buttons -->
+          <div class="grid sm:grid-cols-2 gap-4">
+            <button type="button" id="send-whatsapp-btn" class="btn-crimson py-4 px-5 rounded-xl text-white font-bold text-sm shadow-lg flex items-center justify-center gap-2.5">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+              <span>Send via WhatsApp</span>
+            </button>
+
+            <button type="button" id="send-email-btn" class="btn-royal py-4 px-5 rounded-xl text-white font-bold text-sm shadow-lg flex items-center justify-center gap-2.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span>Send via Official Email</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Official Contact Card & Social Links -->
+        <div class="lg:col-span-5 space-y-6">
+
+          <!-- Direct Credentials Card -->
+          <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-md">
+            <h3 class="font-display font-extrabold text-xl text-[#0F172A] mb-5">Direct Executive Contact</h3>
+
+            <div class="space-y-3.5 text-sm">
+              <!-- Name & Company -->
+              <div class="p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] font-mono font-bold text-slate-400 block">FOUNDER & CEO</span>
+                  <span class="font-bold text-[#0F172A]">Hridoy Saha Shawon</span>
+                  <span class="text-xs font-semibold text-[#1D4ED8] block">Saha Corporation</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-[#EFF6FF] text-[#1D4ED8] font-mono text-xs font-bold">VERIFIED</span>
+              </div>
+
+              <!-- Email with One-Click Copy -->
+              <div class="p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200 flex items-center justify-between gap-2">
+                <div class="min-w-0">
+                  <span class="text-[11px] font-mono font-bold text-slate-400 block">OFFICIAL EMAIL</span>
+                  <a href="mailto:shawongaming306@gmail.com" class="font-bold text-[#1D4ED8] hover:underline truncate block">
+                    shawongaming306@gmail.com
+                  </a>
+                </div>
+                <button type="button" onclick="copyText('shawongaming306@gmail.com', 'Email address copied!')" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-[#1D4ED8] text-xs font-bold text-[#0F172A] shrink-0 transition-colors">
+                  Copy
+                </button>
+              </div>
+
+              <!-- Phone / WhatsApp with One-Click Copy -->
+              <div class="p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200 flex items-center justify-between gap-2">
+                <div>
+                  <span class="text-[11px] font-mono font-bold text-slate-400 block">PHONE & WHATSAPP</span>
+                  <a href="https://wa.me/8801706631550" target="_blank" rel="noopener noreferrer" class="font-bold text-[#DC2626] hover:underline block">
+                    +880 1706631550
+                  </a>
+                </div>
+                <button type="button" onclick="copyText('+8801706631550', 'WhatsApp / Phone number copied!')" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-[#DC2626] text-xs font-bold text-[#0F172A] shrink-0 transition-colors">
+                  Copy
+                </button>
+              </div>
+
+              <!-- Headquarters Address -->
+              <div class="p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200">
+                <span class="text-[11px] font-mono font-bold text-slate-400 block">HEADQUARTERS LOCATION</span>
+                <span class="font-semibold text-[#0F172A] block mt-0.5">
+                  Dhukuria, Shiyalkhol, Sirajganj Sadar,<br/>
+                  Sirajganj, Rajshahi Division, Bangladesh
+                </span>
+                <span class="text-xs text-[#1D4ED8] font-mono font-semibold mt-1.5 block">Serving Clients Worldwide • Remote Delivery</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Media Links Grid -->
+          <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-md">
+            <h3 class="font-display font-extrabold text-lg text-[#0F172A] mb-1.5">Social & Developer Profiles</h3>
+            <p class="text-xs text-slate-500 mb-5">Connect with Saha Corporation & Hridoy Saha Shawon online.</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs font-bold">
+              <!-- GitHub -->
+              <a href="https://github.com/shawon306" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-[#F8FAFC] hover:bg-[#EFF6FF] border border-slate-200 hover:border-[#1D4ED8] text-[#0F172A] flex items-center gap-2 transition-all">
+                <svg class="w-4 h-4 text-[#0F172A] shrink-0" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                <span>GitHub</span>
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-[#F8FAFC] hover:bg-[#EFF6FF] border border-slate-200 hover:border-[#1D4ED8] text-[#0F172A] flex items-center gap-2 transition-all">
+                <svg class="w-4 h-4 text-[#1D4ED8] shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                <span>LinkedIn</span>
+              </a>
+
+              <!-- Facebook -->
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-[#F8FAFC] hover:bg-[#EFF6FF] border border-slate-200 hover:border-[#1D4ED8] text-[#0F172A] flex items-center gap-2 transition-all">
+                <svg class="w-4 h-4 text-[#1D4ED8] shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+                <span>Facebook</span>
+              </a>
+
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-[#F8FAFC] hover:bg-[#FEF2F2] border border-slate-200 hover:border-[#DC2626] text-[#0F172A] flex items-center gap-2 transition-all">
+                <svg class="w-4 h-4 text-[#DC2626] shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                <span>Instagram</span>
+              </a>
+
+              <!-- YouTube -->
+              <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-[#F8FAFC] hover:bg-[#FEF2F2] border border-slate-200 hover:border-[#DC2626] text-[#0F172A] flex items-center gap-2 transition-all">
+                <svg class="w-4 h-4 text-[#DC2626] shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <span>YouTube</span>
+              </a>
+
+              <!-- X / Twitter -->
+              <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-[#F8FAFC] hover:bg-[#EFF6FF] border border-slate-200 hover:border-[#1D4ED8] text-[#0F172A] flex items-center gap-2 transition-all">
+                <svg class="w-4 h-4 text-[#0F172A] shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <span>X (Twitter)</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive White, Blue & Red Footer -->
+  <footer class="bg-[#0F172A] text-white py-12 border-t-4 border-[#DC2626]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-white border-2 border-[#1D4ED8] flex items-center justify-center font-display font-extrabold text-[#1D4ED8] text-base">
+          SC<span class="text-[#DC2626]">.</span>
+        </div>
+        <div>
+          <span class="font-display font-extrabold text-white text-lg">Saha Corporation</span>
+          <span class="text-xs text-slate-300 block">Hridoy Saha Shawon • Custom Web Engineering & Graphic Design</span>
+        </div>
+      </div>
+
+      <div class="text-xs text-slate-300 text-center md:text-right">
+        <p>© 2026 Saha Corporation. All rights reserved. 100% Hand-Coded (Zero CMS).</p>
+        <p class="mt-1 font-mono text-blue-300">shawongaming306@gmail.com • WhatsApp: +880 1706631550</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Toast Notification Utility (Replaces alert())
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = message;
+      toast.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      });
+      setTimeout(() => {
+        toast.classList.add('translate-y-4', 'opacity-0');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 2800);
+    }
+
+    // One-Click Clipboard Copy Utility
+    function copyText(text, successMessage) {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      tempInput.style.position = 'fixed';
+      tempInput.style.opacity = '0';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMessage);
+      } catch (err) {
+        showToast('Unable to copy automatically.');
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    // Interactive Portfolio Category Filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-[#1D4ED8]', 'text-white', 'shadow-sm');
+          b.classList.add('bg-white', 'border', 'border-slate-200', 'text-[#334155]');
+        });
+        btn.classList.remove('bg-white', 'border', 'border-slate-200', 'text-[#334155]');
+        btn.classList.add('bg-[#1D4ED8]', 'text-white', 'shadow-sm');
+
+        const filter = btn.getAttribute('data-filter');
+        portfolioItems.forEach(item => {
+          const categories = item.getAttribute('data-category');
+          if (filter === 'all' || categories.includes(filter)) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Interactive Project Quote Builder State
+    let selectedService = 'Full-Stack Web App (Next.js + Node.js + DB)';
+    let selectedBudget = '$1,500 – $5,000 (Growth Web System)';
+
+    // Service Selection
+    document.querySelectorAll('.brief-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.brief-option').forEach(b => {
+          b.classList.remove('border-2', 'border-[#1D4ED8]', 'bg-[#EFF6FF]', 'text-[#1D4ED8]');
+          b.classList.add('border', 'border-slate-200', 'bg-[#F8FAFC]', 'text-[#334155]');
+        });
+        btn.classList.remove('border', 'border-slate-200', 'bg-[#F8FAFC]', 'text-[#334155]');
+        btn.classList.add('border-2', 'border-[#1D4ED8]', 'bg-[#EFF6FF]', 'text-[#1D4ED8]');
+        selectedService = btn.getAttribute('data-value');
+      });
+    });
+
+    // Budget Selection
+    document.querySelectorAll('.budget-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.budget-option').forEach(b => {
+          b.classList.remove('border-2', 'border-[#DC2626]', 'bg-[#FEF2F2]', 'text-[#DC2626]');
+          b.classList.add('border', 'border-slate-200', 'bg-[#F8FAFC]', 'text-[#334155]');
+        });
+        btn.classList.remove('border', 'border-slate-200', 'bg-[#F8FAFC]', 'text-[#334155]');
+        btn.classList.add('border-2', 'border-[#DC2626]', 'bg-[#FEF2F2]', 'text-[#DC2626]');
+        selectedBudget = btn.getAttribute('data-value');
+      });
+    });
+
+    // Build Pre-formatted Inquiry Message
+    function buildInquiryMessage() {
+      const clientName = document.getElementById('client-name').value.trim() || 'Prospective Client';
+      const timeline = document.getElementById('client-timeline').value.trim() || 'To be discussed';
+      const details = document.getElementById('client-details').value.trim() || 'Interested in 100% custom-coded development and graphic design services.';
+
+      return `Hello Hridoy Saha Shawon (Saha Corporation),\n\nI reviewed your portfolio and would like to initiate a project:\n\n• Client / Company: ${clientName}\n• Primary Service: ${selectedService}\n• Estimated USD Budget: ${selectedBudget}\n• Target Timeline: ${timeline}\n• Project Overview: ${details}\n\nLooking forward to discussing this project with you.`;
+    }
+
+    // Launch WhatsApp
+    document.getElementById('send-whatsapp-btn').addEventListener('click', () => {
+      const message = encodeURIComponent(buildInquiryMessage());
+      window.open(`https://wa.me/8801706631550?text=${message}`, '_blank', 'noopener,noreferrer');
+    });
+
+    // Launch Official Email
+    document.getElementById('send-email-btn').addEventListener('click', () => {
+      const subject = encodeURIComponent(`Project Inquiry — ${selectedService} | Saha Corporation`);
+      const body = encodeURIComponent(buildInquiryMessage());
+      window.location.href = `mailto:shawongaming306@gmail.com?subject=${subject}&body=${body}`;
+    });
+
+    // Scroll Reveal Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
+```
